@@ -1,0 +1,204 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap'); /*Importação de uma fonte, no google fonts*/
+
+@font-face { /*Importação de uma fonte baixada localmente no pc*/
+    font-family: 'Android';
+    src: url('../fontes/idroid.otf') format('opentype');/*Aqui adicionamos o ../ pois estava localizado em uma pasta anterior do documento CSS*/
+    font-weight: normal;
+}
+
+
+:root{ /*Aqui aprendemos a pseudo classe :root, para criarmos variáveis para guardar alguns valores*/
+    --cor0: #c5ebd6;
+    --cor1: #83e1ad;
+    --cor2: #3ddc84;/*Variáveis criadas com valores de cores*/
+    --cor3: #2fa866;
+    --cor4: #1a5c37;
+    --cor5: #063d1e;
+
+    --fonte-padrao: Arial, Verdana, Helvetica, Sans-serif;
+    --fonte-destaque:  'Bebas Neue', cursive;/*Variáveis criadas com valores de fontes*/
+    --fonte-android: 'Android', cursive;
+}
+*{ /*Aqui fizemos uma configuração global das CSS. Isso aqui retirou todas as margens e paddings do documento, facilitando para ir editando depois*/
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background-color: var(--cor0);
+    font-family: var(--fonte-padrao);/*Aqui estamos aplicando as variáveis criadas*/
+    margin: 0px;
+}
+a.externo::after{
+    content: '\00A0\1F517'; /*Aqui criamos um pseudo elemento para todas as classes de links externos e colocamos os códigos de espaço e emote de correntinha, para dar ideia que é um link externo.*/
+}
+
+header{
+    background-image: linear-gradient(to bottom, var(--cor3), var(--cor5)); /*Aqui em vez de colocar um bg color, configuramos um gradiente utilizando as nossas variáveis criadas*/
+    min-height: 150px; /*Aqui configuramos a altura mínima do header. Por algum motivo, precisa ser a altura minima e não a máxima, não estava dando certo. Mas tenho que investigar o porque. Assim, ele fica responsivo e não trava se colocássemos apenas height*/
+    text-align: center;
+    padding-top: 40px;
+}
+
+header > h1{
+    color: white;
+    font-family: var(--fonte-destaque); /*Aqui são as aplicações das variáveis criadas*/
+    margin-bottom: 20px;
+    font-size: 3em;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.652);
+    font-weight: normal; /*Tirou o negrito pré configurado da fonte de título*/
+    
+}
+header > p{
+    color: white;
+    font-family: var(--fonte-padrao);
+    font-size: 1.2em;
+    max-width: 600px;/*Aqui configuramos a maxima largura do parágrafo, para ele se tornar responsivo e logo abaixo tivemos que definir a margem dele, pois ele se tornou um bloco e perdeu a configuração de texte align. */
+    padding-right: 10px;/*Aqui criamos um padding para ele ter espaço nas laterais, quando a janela estiver fechando*/
+    padding-left: 10px;
+    margin: auto;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.652);
+}
+nav{
+    background-color: var(--cor5);
+    padding: 10px;
+    box-shadow: 0px 7px 7px rgba(0, 0, 0, 0.49);
+}
+nav > a {
+    color: var(--cor1);
+    padding: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px; /*Aqui definimos a borda do nosso bg color. Note que aparece somente na hora que passa o mouse em cima, por causa da configuração de pseudo classe :hover aplicado nos nossos links*/
+    transition-duration: 0.5s; /*Aqui criamos um timer de tempo para a aplicação ordenada pela pseudo classe hover, acontecer. Deu um efeito de fedding*/
+}
+nav > a:hover{
+    background-color: var(--cor2); /*Aqui configuramos para surgir um background color quando passar o mouse em cima dos links. Legal demis, usando lógica para colocar efeitos em CSS*/
+    color: var(--cor5);
+    
+}
+main{
+    background-color: white;
+    min-width: 300px;
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.467); /*Aqui tornamos nossa box principal, mais responsiva e aplicamos mais estilos para ela*/
+    margin-bottom: 30px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+main h1{
+    color: var(--cor5);
+    font-family: var(--fonte-android);
+    font-weight: normal;
+    font-size: 1.8em;
+}
+main h2{
+    color: var(--cor5);
+    font-family: var(--fonte-android);
+    font-size: 1.3em;
+    background-image: linear-gradient(to right, var(--cor1), transparent); /*Aqui usamos lógica, arte e imaginação para criar um efeito legal de gradiente nos h2*/
+    text-indent: 8px;
+    font-weight: normal;
+}
+main p{ /*Aqui colocamos main p, pois quer dizer que estamos chamando a tag em qualquer nível e não necessariamente no filho*/
+    margin: 15px 0px;
+    text-align: justify;
+    text-indent: 30px;
+    font-size: 1em;
+    line-height: 2em; /*Aqui definimos o espaçamento entre linhas de um parágrafo.*/
+}
+main strong{ /*Aqui selecionamos todas as tags em negrito dentro do main, para aplicarmos alguns estilos nelas*/
+    color: var(--cor4);
+    font-weight: bold;
+}
+main a {
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--cor5);
+    background-color: var(--cor1);
+    padding: 2px 6px;
+}
+main a:hover{ /*Aqui configuramos para quando passarmos o mouse em cima do link, ele criar o underline. Bem legal a ideia.*/
+    text-decoration: underline;
+    color: var(--cor4);
+}
+main img{
+    width: 100%; /*Aqui definimos que toda img da tag main, será margin 100%, se adaptando a caixa*/
+}
+main img.pequena{ /*Aqui criamos uma classe e depois chamamos ela de forma hierarquica, para configurar a imagem pequena. Transformamos em um block para podermos centralizar no meio. Fizemos a classe porque como que já tinhamos criado 100% para img acima, isso se fez necessário para essa configuração ser aplicada somente nessa tag img em específico*/
+    max-width: 350px;
+    display: block;
+    margin: auto;
+}
+div.video{ /*Técnica utilizada para deixar responsível vídeos incorporados*/
+    background-color: var(--cor5);
+    margin: 0px -20px 30px -20px; /*Aqui criamos um shorthand para a margin da div do video e colocamos valores negativos para que ele encoste no limite da caixa main*/
+    padding: 20px;
+
+    padding-bottom: 50%;
+    position: relative;
+}
+div.video > iframe{ /*Técnica utilizada para deixar responsível vídeos incorporados*/
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+}
+aside{
+    background-color: var(--cor1);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.278);
+}
+aside > h3{ /*IMPORTANTE!! Aqui foi ensinado uma técnica para juntar dos bg color de uma caixa na outra, tornando como se fosse um elemento, só que de cores diferentes. Foi usados margens negativas em cima e nas laterais, para colar no limite da caixa aside. Isso vence até o padding interno que tinha na caixa. Técnica legal e interessante*/
+    background-color: var(--cor4);
+    margin: -10px -10px 0px -10px;
+    border-radius: 5px 5px 0px 0px;
+    padding: 10px;
+    color: white;
+}
+aside > ul{
+    list-style-type: '\2714\00A0\00A0'; /*Aqui colocamos a lista personalizada, colocamos o emoji de check entre aspas unicas e barra invertida, mais o código e depois adicionamos mais dois códigos de espaço(Não é compatível com qualquer tipo de navegador)*/
+    list-style-position: inside; 
+    columns: 2;
+}
+footer{
+    background-color: var(--cor5);
+    color: white;
+    text-align: center;
+    font-size: 0.8em;
+    padding: 5px;
+}
+footer > p > a{ /*Aqui para simplificarmos, poderíamos apenas colocar footer a, que iria puxar todos os a de dentro do footer, mesmo não sendo um filho direto*/
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    text-decoration: none;
+
+}
+footer > p > a:hover{
+    text-decoration: underline;
+    color: var(--cor1);
+}
+
+/*
+
+Ordem utilizada pelo professor até agora para a construção desse pequeno projeto:
+
+1 - Planejamento da criação do Projeto (Definição do Layout da página, definição das paletas de cores a serem utilizadas, importações de fontes externas e internas a serem utilizadas)
+
+2 - Transformando o Layout em código (Visualização do esbolço feito e começou a montar as caixas dentro do HTML e colocando as semântica de Títulos, parágrafos, formatações de textos, criação de listas, adionamento de imagens e vídeos, criações de Hiper Links, entre outro. Tudo que é envolvido a parte do grosso do HTML(Semântica))
+
+3 - Configurções iniciais das CSS e definições de variáveis (Começou a configurar a questão das margens das caixas, das cores e tipos de fontes. Foi utilizada uma nova técnica de criação de variáveis para guardar os valores dos tipos de fontes e cores. Isso ajuda na hora de otimizar o tempo, caso deseje fazer alterações )
+
+4- Deixando o site responsível (Depois começamos a deixar nossas caixas e conteúdos de forma responsiva, nas imagens utilizando a técnica aprendida de carregar a imagem com um tamannho máximo dentro da tag picture. E as caixas, estabelecendo com min-widht e um max widht)
+
+
+
+
+*/
